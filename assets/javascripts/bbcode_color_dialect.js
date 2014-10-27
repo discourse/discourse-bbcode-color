@@ -4,9 +4,9 @@
     stop:  "[/color]",
     rawContents: true,
     emitter: function(contents) {
-      var matches = contents.match(/(.+)](.*)/);
+      var matches = contents.match(/(.+)](.*)$/);
       if (matches) {
-        return ['font', {color: matches[1]}, matches[2]];
+        return ['font', {color: matches[1]}].concat(this.processInline(matches[2]));
       }
     }
   });
