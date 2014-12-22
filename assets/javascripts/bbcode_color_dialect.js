@@ -1,15 +1,11 @@
 (function() {
-  Discourse.Dialect.inlineBetween({
-    start: "[color=",
-    stop:  "[/color]",
-    rawContents: true,
-    emitter: function(contents) {
-      var matches = contents.match(/(.+)](.*)$/);
-      if (matches) {
-        return ['font', {color: matches[1]}].concat(this.processInline(matches[2]));
-      }
-    }
-  });
-  Discourse.Markdown.whiteListTag('font', 'color', /\w+/);
-  Discourse.Markdown.whiteListTag('font', 'color', /#[0-9A-Fa-f]+/);
+  function replaceFontColor (text) {
+    while (text != (text = text.replace(/\[color=([^\]]+)\]((?:(?!\[color=[^\]]+\]|\[\/color\])[\S\s])*)\[\/color\]/ig, function (match, p1, p2, offset, string) {
+      return "<font color='" + p1 + "'>" + p2 + "</font>";
+    })));
+    return text;
+  }
+
+  Discourse.Dialect.addPreProcessor(replaceFontColor);
+  Discourse.Markdown.whiteListTag('font', 'color');
 })();
