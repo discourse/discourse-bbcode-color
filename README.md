@@ -10,6 +10,8 @@ In your posts, surround text with `[color=...]` and `[/color]`. Color values are
 
 ```
 Look at my [color=red]red words[/color] and be amazed! Also, [color=#33ff33]green is cool[/color] too.
+
+Works for background colors too!  This is your [bgcolor=yellow]typical yellow highlight[/bgcolor], and [bgcolor=blue] [color=white]you can mix em[/color] [color=red]up, you know?[/color][/bgcolor]
 ```
 
 Installation
