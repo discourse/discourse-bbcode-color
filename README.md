@@ -32,10 +32,16 @@ hooks:
 
 * Rebuild the container
 
-```
+```shell
 cd /var/docker
 git pull
 ./launcher rebuild app
+```
+
+* Re-render all posts now that the plugin is installed. This won't create any extra revisions.
+
+```shell
+rake posts:rebake
 ```
 
 License
