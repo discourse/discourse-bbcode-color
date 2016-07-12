@@ -20,3 +20,5 @@ doc/
 *.swp
 auto_generated
 gems
+
+.DS_Store
