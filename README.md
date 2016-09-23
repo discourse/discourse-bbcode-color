@@ -33,7 +33,7 @@ hooks:
 * Rebuild the container
 
 ```shell
-cd /var/docker
+cd /var/discourse
 git pull
 ./launcher rebuild app
 ```
