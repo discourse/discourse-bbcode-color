@@ -1,4 +1,7 @@
 (function() {
+  // Don't bother with this code if the new dialect system is present
+  if (Discourse.dialect_deprecated) { return; }
+
   function replaceFontColor (text) {
     while (text !== (text = text.replace(/\[color=([^\]]+)\]((?:(?!\[color=[^\]]+\]|\[\/color\])[\S\s])*)\[\/color\]/ig, function (match, p1, p2) {
       return "<font color='" + p1 + "'>" + p2 + "</font>";
