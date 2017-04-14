@@ -7,7 +7,7 @@ registerOption((siteSettings, opts) => {
 function replaceFontColor(text) {
   text = text || "";
   while (text !== (text = text.replace(/\[color=([^\]]+)\]((?:(?!\[color=[^\]]+\]|\[\/color\])[\S\s])*)\[\/color\]/ig, function (match, p1, p2) {
-    return `<font color='${p1}'>${p2}</font>`;
+    return `<span style='color:${p1}'>${p2}</span>`;
   })));
   return text;
 }
@@ -21,7 +21,13 @@ function replaceFontBgColor(text) {
 }
 
 export function setup(helper) {
-  helper.whiteList(['font[color]']);
+  helper.whiteList({
+    custom(tag, name, value) {
+      if (tag === 'span' && name === 'style') {
+        return /^color:.*$/.exec(value);
+      }
+    }
+  });
   helper.whiteList({
     custom(tag, name, value) {
       if (tag === 'span' && name === 'style') {
