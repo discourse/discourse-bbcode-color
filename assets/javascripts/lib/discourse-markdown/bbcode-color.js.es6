@@ -25,11 +25,35 @@ export function setup(helper) {
   helper.whiteList({
     custom(tag, name, value) {
       if (tag === 'span' && name === 'style') {
-        return /^background-color:.*$/.exec(value);
+        return /^background-color:#?[a-zA-Z0-9]+$/.exec(value);
       }
     }
   });
 
-  helper.addPreProcessor(text => replaceFontColor(text));
-  helper.addPreProcessor(text => replaceFontBgColor(text));
+  if (helper.markdownIt) {
+    helper.registerPlugin(md => {
+      const ruler = md.inline.bbcode_ruler;
+
+      ruler.push('bgcolor', {
+        tag: 'bgcolor',
+        wrap: function(token, tagInfo){
+          token.tag = 'span';
+          token.attrs = [['style', 'background-color:' + tagInfo.attrs._default.trim()]];
+          return true;
+        }
+      });
+
+      ruler.push('color', {
+        tag: 'color',
+        wrap: function(token, tagInfo){
+          token.tag = 'font';
+          token.attrs = [['color', tagInfo.attrs._default]];
+          return true;
+        }
+      });
+    });
+  } else {
+    helper.addPreProcessor(text => replaceFontColor(text));
+    helper.addPreProcessor(text => replaceFontBgColor(text));
+  }
 }
