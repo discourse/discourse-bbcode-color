@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe PrettyText do
   it 'can apply color bbcode' do
-    SiteSetting.enable_experimental_markdown_it = true
-
     cooked = PrettyText.cook "hello [color=red]RED[/color] world"
     html = '<p>hello <font color="red">RED</font> world</p>'
 
@@ -11,8 +9,6 @@ describe PrettyText do
   end
 
   it 'can apply background color bbcode' do
-    SiteSetting.enable_experimental_markdown_it = true
-
     cooked = PrettyText.cook "hello [bgcolor=red]RED[/bgcolor] world"
     html = '<p>hello <span style="background-color:red">RED</span> world</p>'
 

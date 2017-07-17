@@ -32,23 +32,37 @@ export function setup(helper) {
 
   if (helper.markdownIt) {
     helper.registerPlugin(md => {
-      const ruler = md.inline.bbcode_ruler;
+      const ruler = md.inline.bbcode.ruler;
 
       ruler.push('bgcolor', {
         tag: 'bgcolor',
-        wrap: function(token, tagInfo){
+        wrap: function(token, endToken, tagInfo){
+          token.type = 'span_open';
           token.tag = 'span';
           token.attrs = [['style', 'background-color:' + tagInfo.attrs._default.trim()]];
-          return true;
+          token.content = '';
+          token.nesting = 1;
+
+          endToken.type = 'span_close';
+          endToken.tag = 'span';
+          endToken.nesting = -1;
+          endToken.content = '';
         }
       });
 
       ruler.push('color', {
         tag: 'color',
-        wrap: function(token, tagInfo){
+        wrap: function(token, endToken, tagInfo){
+          token.type = 'font_open';
           token.tag = 'font';
           token.attrs = [['color', tagInfo.attrs._default]];
-          return true;
+          token.content = '';
+          token.nesting = 1;
+
+          endToken.type = 'font_close';
+          endToken.tag = 'font';
+          endToken.nesting = -1;
+          endToken.content = '';
         }
       });
     });
