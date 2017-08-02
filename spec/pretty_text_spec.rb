@@ -15,4 +15,3 @@ describe PrettyText do
     expect(cooked).to eq(html)
   end
 end
-
