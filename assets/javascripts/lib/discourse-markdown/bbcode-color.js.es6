@@ -14,7 +14,7 @@ function replaceFontColor(text) {
         return `<font color='${p1}'>${p2}</font>`;
       }
     ))
-  );
+  ) {}
   return text;
 }
 
@@ -28,7 +28,7 @@ function replaceFontBgColor(text) {
         return `<span style='background-color:${p1}'>${p2}</span>`;
       }
     ))
-  );
+  ) {}
   return text;
 }
 
