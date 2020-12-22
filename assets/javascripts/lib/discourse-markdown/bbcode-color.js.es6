@@ -33,8 +33,8 @@ function replaceFontBgColor(text) {
 }
 
 export function setup(helper) {
-  helper.allowList(["font[color]"]);
-  helper.allowList({
+  helper.whiteList(["font[color]"]);
+  helper.whiteList({
     custom(tag, name, value) {
       if (tag === "span" && name === "style") {
         return /^background-color:#?[a-zA-Z0-9]+$/.exec(value);
