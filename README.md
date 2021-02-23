@@ -3,6 +3,8 @@ discourse-bbcode-color
 
 A Discourse Plugin to support BBCode color tags.
 
+Official Plugin Topic & Documentation: https://meta.discourse.org/t/discourse-bbcode-color/65363
+
 Usage
 =====
 
