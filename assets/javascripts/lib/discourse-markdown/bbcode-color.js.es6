@@ -1,9 +1,3 @@
-import { registerOption } from "pretty-text/pretty-text";
-
-registerOption((siteSettings, opts) => {
-  opts.features["bbcode-color"] = true;
-});
-
 function replaceFontColor(text) {
   text = text || "";
   while (
@@ -40,6 +34,10 @@ export function setup(helper) {
         return /^background-color:#?[a-zA-Z0-9]+$/.exec(value);
       }
     },
+  });
+
+  helper.registerOptions((opts) => {
+    opts.features["bbcode-color"] = true;
   });
 
   if (helper.markdownIt) {
