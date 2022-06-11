@@ -5,7 +5,7 @@ function replaceFontColor(text) {
     (text = text.replace(
       /\[color=([^\]]+)\]((?:(?!\[color=[^\]]+\]|\[\/color\])[\S\s])*)\[\/color\]/gi,
       function (match, p1, p2) {
-        return `<font color='${p1}'>${p2}</font>`;
+        return `<span style='color:${p1}'>${p2}</span>`;
       }
     ))
   ) {}
@@ -27,11 +27,10 @@ function replaceFontBgColor(text) {
 }
 
 export function setup(helper) {
-  helper.allowList(["font[color]"]);
   helper.allowList({
     custom(tag, name, value) {
       if (tag === "span" && name === "style") {
-        return /^background-color:#?[a-zA-Z0-9]+$/.exec(value);
+        return /^(background-)?color:#?[a-zA-Z0-9]+$/.exec(value);
       }
     },
   });
@@ -65,14 +64,14 @@ export function setup(helper) {
       ruler.push("color", {
         tag: "color",
         wrap: function (token, endToken, tagInfo) {
-          token.type = "font_open";
-          token.tag = "font";
-          token.attrs = [["color", tagInfo.attrs._default]];
+          token.type = "span_open";
+          token.tag = "span";
+          token.attrs = [["style", "color:" + tagInfo.attrs._default.trim()]];
           token.content = "";
           token.nesting = 1;
 
-          endToken.type = "font_close";
-          endToken.tag = "font";
+          endToken.type = "span_close";
+          endToken.tag = "span";
           endToken.nesting = -1;
           endToken.content = "";
         },
