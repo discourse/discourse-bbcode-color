@@ -8,7 +8,5 @@
 # transpile_js: true
 
 after_initialize do
-  if respond_to?(:discourse_chat)
-    discourse_chat&.enable_markdown_feature('bbcode-color')
-  end
+  chat&.enable_markdown_feature("bbcode-color") if respond_to?(:chat) && SiteSetting.chat_enabled
 end
