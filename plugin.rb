@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # name: discourse-bbcode-color
-# about: Adds BBCode colors to the post formatting options. 
+# about: Adds BBCode colors to the post formatting options.
 # meta_topic_id: 65363
 # version: 0.2
 # authors: Neil Lalonde, Régis Hanol
