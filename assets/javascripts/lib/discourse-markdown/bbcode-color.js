@@ -1,28 +1,30 @@
 function replaceFontColor(text) {
-  text = text || "";
-  while (
-    text !==
-    (text = text.replace(
+  text ||= "";
+  let previousText;
+
+  do {
+    previousText = text;
+    text = text.replace(
       /\[color=([^\]]+)\]((?:(?!\[color=[^\]]+\]|\[\/color\])[\S\s])*)\[\/color\]/gi,
-      function (match, p1, p2) {
-        return `<span style='color:${p1}'>${p2}</span>`;
-      }
-    ))
-  ) {}
+      (_, p1, p2) => `<span style='color:${p1}'>${p2}</span>`
+    );
+  } while (text !== previousText);
+
   return text;
 }
 
 function replaceFontBgColor(text) {
-  text = text || "";
-  while (
-    text !==
-    (text = text.replace(
+  text ||= "";
+  let previousText;
+
+  do {
+    previousText = text;
+    text = text.replace(
       /\[bgcolor=([^\]]+)\]((?:(?!\[bgcolor=[^\]]+\]|\[\/bgcolor\])[\S\s])*)\[\/bgcolor\]/gi,
-      function (match, p1, p2) {
-        return `<span style='background-color:${p1}'>${p2}</span>`;
-      }
-    ))
-  ) {}
+      (_, p1, p2) => `<span style='background-color:${p1}'>${p2}</span>`
+    );
+  } while (text !== previousText);
+
   return text;
 }
 
