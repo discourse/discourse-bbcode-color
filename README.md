@@ -1,6 +1,6 @@
 # discourse-bbcode-color
 
-A Discourse Plugin to support BBCode color tags.
+A Discourse Plugin to enhance the Markdown composer with support for BBCode color tags
 
 Official Plugin Topic & Documentation: https://meta.discourse.org/t/discourse-bbcode-color/65363
 
