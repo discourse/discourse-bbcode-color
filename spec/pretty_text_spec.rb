@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "rails_helper"
-
 describe PrettyText do
   it "can apply color bbcode" do
     cooked = PrettyText.cook "hello [color=red]RED[/color] world"
